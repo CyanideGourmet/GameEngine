@@ -3,7 +3,7 @@
 #include "CollisionShape.h"
 class Collider : public Component {
 private:
-	static constexpr unsigned int ComponentID{ 20 };
+	static constexpr unsigned int ComponentID{ 200 };
 protected:
 	std::unique_ptr<CollisionShape> collisionShape;
 	CollisionBox AABB;

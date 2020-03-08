@@ -2,7 +2,7 @@
 #include "Collider.h"
 class SphereCollider : public Collider {
 private:
-	static constexpr unsigned int ComponentID{ 22 };
+	static constexpr unsigned int ComponentID{ 202 };
 public:
 	SphereCollider(Transform* position = nullptr);
 	virtual std::unique_ptr<Component> Clone() const noexcept override;

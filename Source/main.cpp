@@ -5,10 +5,6 @@
 #include "DeviceResources.h"
 #include "StepTimer.h"
 #include "Graphics.h"
-class A {
-public:
-    void foo();
-};
 int CALLBACK WinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
     _In_ LPSTR lpCmdLine,
@@ -50,9 +46,4 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance,
         }
     }
     return 0;
-}
-
-void A::foo() {
-    int* a;
-    static_cast<int*>(a);
 }

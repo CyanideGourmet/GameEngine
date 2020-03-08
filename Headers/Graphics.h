@@ -1,5 +1,6 @@
 #pragma once
 #include "ResourceStorage.h"
+#include "SpriteBatch.h"
 class Graphics final : DX::IDeviceNotify {
 private:
 	typedef void (*task)(void* data);

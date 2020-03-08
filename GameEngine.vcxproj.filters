@@ -31,6 +31,18 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{b397fdb4-155e-4bbc-bf2c-970456bac5b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Components\Collider">
+      <UniqueIdentifier>{65402173-7aaf-4767-97b7-07fe1f5dc816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\Drawable">
+      <UniqueIdentifier>{6401f7ee-09c8-4987-a571-c1dfea82af5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Collider">
+      <UniqueIdentifier>{f17085c5-e6d4-4e2a-b1d7-9079b4604a43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Drawable">
+      <UniqueIdentifier>{a9dcbd39-aa7d-41f1-8944-10009427d10c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Event.h">
@@ -42,25 +54,10 @@
     <ClInclude Include="Headers\Entity.h">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\BoxCollider.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Collider.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Colliders.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Component.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Components.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\SphereCollider.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Sprite.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Headers\DeviceResources.h">
@@ -75,8 +72,26 @@
     <ClInclude Include="Headers\ResourceStorage.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Collider.h">
+      <Filter>Header Files\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\BoxCollider.h">
+      <Filter>Header Files\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Colliders.h">
+      <Filter>Header Files\Components\Collider</Filter>
+    </ClInclude>
     <ClInclude Include="Headers\CollisionShape.h">
-      <Filter>Header Files\Components</Filter>
+      <Filter>Header Files\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\SphereCollider.h">
+      <Filter>Header Files\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Sprite.h">
+      <Filter>Header Files\Components\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Drawable.h">
+      <Filter>Header Files\Components\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,25 +101,7 @@
     <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BoxCollider.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Collider.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Colliders.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Component.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Components.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SphereCollider.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Sprite.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\Entity.cpp">
@@ -121,6 +118,21 @@
     </ClCompile>
     <ClCompile Include="Source\ResourceStorage.cpp">
       <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SphereCollider.cpp">
+      <Filter>Source Files\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BoxCollider.cpp">
+      <Filter>Source Files\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collider.cpp">
+      <Filter>Source Files\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.cpp">
+      <Filter>Source Files\Components\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Drawable.cpp">
+      <Filter>Source Files\Components\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

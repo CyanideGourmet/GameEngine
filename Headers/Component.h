@@ -21,7 +21,6 @@ public:
 	Component(const Component&);
 	Component(		Component&&) noexcept;
 	virtual std::unique_ptr<Component> Clone() const noexcept = 0;
-	virtual							  ~Component()			  = 0 {}
 	const unsigned int& GetID()				const noexcept;
 	Transform&			GetTransform()			  noexcept;
 	Transform			GetWorldTransform() const noexcept;

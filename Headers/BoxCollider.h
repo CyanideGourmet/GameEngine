@@ -2,7 +2,7 @@
 #include "Collider.h"
 class BoxCollider : public Collider {
 private:
-	static constexpr unsigned int ComponentID{ 21 };
+	static constexpr unsigned int ComponentID{ 201 };
 public:
 	BoxCollider(Transform* position = nullptr);
 	virtual std::unique_ptr<Component> Clone() const noexcept override;

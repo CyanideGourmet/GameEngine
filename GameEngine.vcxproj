@@ -157,6 +157,7 @@
     <ClInclude Include="Headers\Component.h" />
     <ClInclude Include="Headers\Components.h" />
     <ClInclude Include="Headers\DeviceResources.h" />
+    <ClInclude Include="Headers\Drawable.h" />
     <ClInclude Include="Headers\Entity.h" />
     <ClInclude Include="Headers\Event.h" />
     <ClInclude Include="Headers\Graphics.h" />
@@ -169,10 +170,9 @@
   <ItemGroup>
     <ClCompile Include="Source\BoxCollider.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
-    <ClCompile Include="Source\Colliders.cpp" />
     <ClCompile Include="Source\Component.cpp" />
-    <ClCompile Include="Source\Components.cpp" />
     <ClCompile Include="Source\DeviceResources.cpp" />
+    <ClCompile Include="Source\Drawable.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\Event.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />

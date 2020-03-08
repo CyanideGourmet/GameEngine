@@ -1,7 +1,8 @@
 #pragma once
 class Scene {
 private:
-	std::list<Entity> entityList;
+	std::list<Entity> colliderList;
+	std::list<Entity> drawableList;
 	std::string sceneName;
 public:
 	Scene(const char* = nullptr);
