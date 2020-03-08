@@ -1,6 +1,12 @@
 #include "Event.h"
+
+#include "Components.h"
+#include "Entity.h"
+#include "Scene.h"
+
 #include "DeviceResources.h"
 #include "StepTimer.h"
+
 #include "Graphics.h"
 
 Graphics::Graphics() {
@@ -26,7 +32,10 @@ void Graphics::Render(DX::StepTimer const& timer) {
 	if (timer.GetFrameCount() != 0) {
 		Clear();
 		deviceResources->PIXBeginEvent(L"Render");
+
 		renderEvent.Invoke();
+		scenePtr->Render();
+
 		deviceResources->PIXEndEvent();
 		deviceResources->Present();
 	}
@@ -48,13 +57,9 @@ void Graphics::Clear() {
 	deviceResources->PIXEndEvent();
 }
 
-void Graphics::AddEntity(task entityRender) {
-	renderEvent.AddListener(entityRender);
+void Graphics::ChangeScene(Scene* newScene) {
+	scenePtr = newScene;
 }
-void Graphics::RemoveEntity(task entityRender) {
-	renderEvent.RemoveListener(entityRender);
-}
-
 void Graphics::CreateResources() {}
 void Graphics::CreateWindowSizeResources() {}
 void Graphics::OnDeviceLost() {}

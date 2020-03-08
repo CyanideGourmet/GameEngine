@@ -2,7 +2,7 @@
 #include "Entity.h"
 #pragma region Class-specific methods
 Entity::Entity(const char* name)
-	: componentList{}, entityName{ name } {}
+	: componentList{}, entityName{ name }, transform{ {0.f, 0.f, 0.f}, {0.f, 0.f, 0.f}, {1.f, 1.f, 1.f} } {}
 Entity::Entity(const Entity& source)
 	: componentList{}, transform{ source.transform }, entityName{ source.GetName() + "0" } {
 	for (auto iter{ source.componentList.begin() }; iter != source.componentList.end(); iter++) {
@@ -27,7 +27,7 @@ std::string Entity::GetName() const noexcept {
 }
 #pragma endregion
 #pragma region Component functionality
-void Entity::Start(Microsoft::WRL::ComPtr<ID3D11Device>& device, Microsoft::WRL::ComPtr<ID3D11DeviceContext>& deviceContext) {
+void Entity::Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext) {
 	for (auto componentPtr{ componentList.begin() }; componentPtr != componentList.end(); componentPtr++) {
 		componentPtr->get()->Start(device, deviceContext);
 	}

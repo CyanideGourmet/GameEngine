@@ -1,7 +1,14 @@
+#include "Components.h"
+#include "Entity.h"
+#include "Scene.h"
 #include "Event.h"
 #include "DeviceResources.h"
 #include "StepTimer.h"
 #include "Graphics.h"
+class A {
+public:
+    void foo();
+};
 int CALLBACK WinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
     _In_ LPSTR lpCmdLine,
@@ -22,8 +29,13 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance,
     RegisterClassEx(&wnd);
     HWND hWnd{ CreateWindowEx(NULL, L"WindowClass", L"Window", WS_BORDER | WS_CAPTION | WS_SYSMENU, 100, 100, 1280, 720, NULL, NULL, hInstance, nullptr) };
     ShowWindow(hWnd, SW_SHOW);
+
     Graphics graphics{};
     graphics.Start(hWnd, 1280, 720);
+    Scene scene{"Scene"};
+    scene.Start(graphics.GetDevice(), graphics.GetDeviceContext());
+    graphics.ChangeScene(&scene);
+
     DX::StepTimer timer{};
     MSG message{};
     while (1) {
@@ -37,4 +49,9 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance,
         }
     }
     return 0;
+}
+
+void A::foo() {
+    int* a;
+    static_cast<int*>(a);
 }

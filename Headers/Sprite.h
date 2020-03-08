@@ -13,7 +13,7 @@ public:
 	Sprite(Transform* = nullptr);
 	virtual std::unique_ptr<Component> clone() const noexcept override;
 	void SetTexture(const wchar_t* filename);
-	virtual void Start(Microsoft::WRL::ComPtr<ID3D11Device>&, Microsoft::WRL::ComPtr<ID3D11DeviceContext>&) override;
+	virtual void Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext) override;
 	virtual void Render() override;
 	virtual void Reset() override;
 };

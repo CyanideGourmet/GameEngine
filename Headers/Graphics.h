@@ -4,6 +4,7 @@ private:
 	typedef void (*task)(void* data);
 	std::unique_ptr<DX::DeviceResources> deviceResources;
 
+	Scene* scenePtr;
 	Event renderEvent;
 
 	void CreateResources();
@@ -23,7 +24,6 @@ public:
 	void Render(DX::StepTimer const& timer);
 	void Clear();
 
-	void AddEntity(task);
-	void RemoveEntity(task);
+	void ChangeScene(Scene*);
 };
 

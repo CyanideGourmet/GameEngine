@@ -1,6 +1,6 @@
 #include "Component.h"
 Component::Component(Transform* transform, const unsigned int& ID)
-	: ComponentID{ ID }, entityTransformPtr{ transform } {}
+	: ComponentID{ ID }, entityTransformPtr{ transform }, transform{ {0.f, 0.f, 0.f}, {0.f, 0.f, 0.f}, {1.f, 1.f, 1.f} } {}
 Component::Component(const Component& source)
 	: ComponentID{ source.GetID() }, entityTransformPtr{ source.entityTransformPtr }, transform{ source.transform } {}
 Component::Component(Component&& source) noexcept
@@ -15,7 +15,7 @@ Transform& Component::GetTransform() noexcept {
 Transform  Component::GetWorldTransform() const noexcept {
 	return transform + *entityTransformPtr;
 }
-void Component::Start(Microsoft::WRL::ComPtr<ID3D11Device>& device, Microsoft::WRL::ComPtr<ID3D11DeviceContext>& deviceContext) {}
+void Component::Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext) {}
 void Component::Update() {}
 void Component::Render() {}
 void Component::Reset()  {}

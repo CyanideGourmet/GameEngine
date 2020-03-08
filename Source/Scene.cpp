@@ -20,7 +20,7 @@ void Scene::RemoveEntity(const char* name) {
 	if (entityIt == entityList.end()) { throw("No such entity!"); }
 	entityList.erase(entityIt);
 }
-void Scene::Start(Microsoft::WRL::ComPtr<ID3D11Device>& device, Microsoft::WRL::ComPtr<ID3D11DeviceContext>& deviceContext) {
+void Scene::Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext) {
 	for (auto iter{ entityList.begin() }; iter != entityList.end(); iter++) {
 		iter->Start(device, deviceContext);
 	}

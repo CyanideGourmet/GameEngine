@@ -9,7 +9,7 @@ public:
 	Entity* AddEntity(const char* = nullptr) noexcept;
 	Entity* GetEntity(const char*);
 	void RemoveEntity(const char*);
-	void Start(Microsoft::WRL::ComPtr<ID3D11Device>&, Microsoft::WRL::ComPtr<ID3D11DeviceContext>&);
+	void Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext);
 	void Update();
 	void Render();
 	void Reset();

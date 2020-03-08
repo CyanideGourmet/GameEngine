@@ -12,12 +12,12 @@ std::unique_ptr<Component> Sprite::clone() const noexcept {
 void Sprite::SetTexture(const wchar_t* filename) {
 	spriteFilename = filename;
 }
-void Sprite::Start(Microsoft::WRL::ComPtr<ID3D11Device>& device, Microsoft::WRL::ComPtr<ID3D11DeviceContext>& deviceContext) {
+void Sprite::Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext) {
 	if (spriteFilename == L"") { throw("No filename for sprite component - critical error"); }
-	spriteBatch = std::make_unique<DirectX::SpriteBatch>(deviceContext.Get());
+	spriteBatch = std::make_unique<DirectX::SpriteBatch>(deviceContext);
 
 	Microsoft::WRL::ComPtr<ID3D11Resource> resource{};
-	DirectX::CreateDDSTextureFromFile(device.Get(), spriteFilename.c_str(), resource.GetAddressOf(), textureView.ReleaseAndGetAddressOf());	//Throw
+	DirectX::CreateDDSTextureFromFile(device, spriteFilename.c_str(), resource.GetAddressOf(), textureView.ReleaseAndGetAddressOf());	//Throw
 
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> texture{};
 	resource.As(&texture);	//Throw

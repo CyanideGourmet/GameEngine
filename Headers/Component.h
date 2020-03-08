@@ -7,7 +7,7 @@ struct Transform {
 	DirectX::SimpleMath::Vector3 rotation;
 	DirectX::SimpleMath::Vector3 scale;
 	Transform operator+(const Transform& rhs) const {
-		return Transform{ position + rhs.position, rotation + rhs.rotation, scale + rhs.scale };
+		return Transform{ position + rhs.position, rotation + rhs.rotation, scale * rhs.scale };
 	}
 };
 class Component abstract {
@@ -25,7 +25,7 @@ public:
 	const unsigned int& GetID()				const noexcept;
 	Transform&			GetTransform()			  noexcept;
 	Transform			GetWorldTransform() const noexcept;
-	virtual void Start(Microsoft::WRL::ComPtr<ID3D11Device>&, Microsoft::WRL::ComPtr<ID3D11DeviceContext>&);
+	virtual void Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext);
 	virtual void Update();
 	virtual void Render();
 	virtual void Reset();
