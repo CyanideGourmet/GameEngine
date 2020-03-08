@@ -60,8 +60,14 @@ void Graphics::Clear() {
 void Graphics::ChangeScene(Scene* newScene) {
 	scenePtr = newScene;
 }
+void Graphics::LoadSprite(const std::wstring& fileName, const std::wstring& resourceName) {
+	resourceStorage.LoadSprite(fileName, resourceName, deviceResources->GetD3DDevice(), deviceResources->GetD3DDeviceContext());
+}
+
 void Graphics::CreateResources() {}
-void Graphics::CreateWindowSizeResources() {}
+void Graphics::CreateWindowSizeResources() {
+	spriteBatch = std::make_unique<DirectX::SpriteBatch>(deviceResources->GetD3DDeviceContext());
+}
 void Graphics::OnDeviceLost() {}
 void Graphics::OnDeviceRestored() {
 	CreateResources();

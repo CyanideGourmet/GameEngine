@@ -1,17 +1,11 @@
 #pragma once
 #include "Component.h"
-struct CollisionBox {
-	float width;
-	float height;
-	float depth;
-};
-struct CollisionSphere {
-	float radius;
-};
+#include "CollisionShape.h"
 class Collider : public Component {
 private:
 	static constexpr unsigned int ComponentID{ 20 };
 protected:
+	std::unique_ptr<CollisionShape> collisionShape;
 	CollisionBox AABB;
 public:
 	Collider(Transform* = nullptr, const unsigned int& ID = ComponentID);

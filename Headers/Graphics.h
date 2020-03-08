@@ -1,11 +1,15 @@
 #pragma once
+#include "ResourceStorage.h"
 class Graphics final : DX::IDeviceNotify {
 private:
 	typedef void (*task)(void* data);
 	std::unique_ptr<DX::DeviceResources> deviceResources;
 
+	std::unique_ptr<DirectX::SpriteBatch> spriteBatch;
+
 	Scene* scenePtr;
 	Event renderEvent;
+	ResourceStorage resourceStorage;
 
 	void CreateResources();
 	void CreateWindowSizeResources();
@@ -25,5 +29,5 @@ public:
 	void Clear();
 
 	void ChangeScene(Scene*);
+	void LoadSprite(const std::wstring&, const std::wstring&);
 };
-

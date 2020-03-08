@@ -153,12 +153,14 @@
     <ClInclude Include="Headers\BoxCollider.h" />
     <ClInclude Include="Headers\Collider.h" />
     <ClInclude Include="Headers\Colliders.h" />
+    <ClInclude Include="Headers\CollisionShape.h" />
     <ClInclude Include="Headers\Component.h" />
     <ClInclude Include="Headers\Components.h" />
     <ClInclude Include="Headers\DeviceResources.h" />
     <ClInclude Include="Headers\Entity.h" />
     <ClInclude Include="Headers\Event.h" />
     <ClInclude Include="Headers\Graphics.h" />
+    <ClInclude Include="Headers\ResourceStorage.h" />
     <ClInclude Include="Headers\Scene.h" />
     <ClInclude Include="Headers\SphereCollider.h" />
     <ClInclude Include="Headers\Sprite.h" />
@@ -175,6 +177,7 @@
     <ClCompile Include="Source\Event.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\ResourceStorage.cpp" />
     <ClCompile Include="Source\Scene.cpp" />
     <ClCompile Include="Source\SphereCollider.cpp" />
     <ClCompile Include="Source\Sprite.cpp" />

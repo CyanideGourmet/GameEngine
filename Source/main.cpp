@@ -32,6 +32,7 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance,
 
     Graphics graphics{};
     graphics.Start(hWnd, 1280, 720);
+    graphics.LoadSprite(L"skin.DDS", L"Skin");
     Scene scene{"Scene"};
     scene.Start(graphics.GetDevice(), graphics.GetDeviceContext());
     graphics.ChangeScene(&scene);

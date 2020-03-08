@@ -6,7 +6,7 @@ Entity::Entity(const char* name)
 Entity::Entity(const Entity& source)
 	: componentList{}, transform{ source.transform }, entityName{ source.GetName() + "0" } {
 	for (auto iter{ source.componentList.begin() }; iter != source.componentList.end(); iter++) {
-		componentList.emplace_back((*iter)->clone());
+		componentList.emplace_back((*iter)->Clone());
 	}
 }
 Entity::Entity(Entity&& source)
@@ -28,24 +28,12 @@ std::string Entity::GetName() const noexcept {
 #pragma endregion
 #pragma region Component functionality
 void Entity::Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext) {
-	for (auto componentPtr{ componentList.begin() }; componentPtr != componentList.end(); componentPtr++) {
-		componentPtr->get()->Start(device, deviceContext);
-	}
 }
 void Entity::Update() {
-	for (auto componentPtr{ componentList.begin() }; componentPtr != componentList.end(); componentPtr++) {
-		componentPtr->get()->Update();
-	}
 }
 void Entity::Render() {
-	for (auto componentPtr{ componentList.begin() }; componentPtr != componentList.end(); componentPtr++) {
-		componentPtr->get()->Render();
-	}
 }
 void Entity::Reset() {
-	for (auto componentPtr{ componentList.begin() }; componentPtr != componentList.end(); componentPtr++) {
-		componentPtr->get()->Reset();
-	}
 }
 #pragma endregion
 #pragma region Component management
