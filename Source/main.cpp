@@ -5,10 +5,11 @@
 #include "DeviceResources.h"
 #include "StepTimer.h"
 #include "Graphics.h"
-int CALLBACK WinMain(_In_ HINSTANCE hInstance,
+int CALLBACK WinMain(
+    _In_     HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
-    _In_ LPSTR lpCmdLine,
-    _In_ int nShowCmd) {
+    _In_     LPSTR lpCmdLine,
+    _In_     int nShowCmd) {
     WNDCLASSEX wnd{ 0 };
     wnd.cbSize = sizeof(WNDCLASSEX);
     wnd.lpfnWndProc = DefWindowProc;
@@ -30,7 +31,18 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance,
     graphics.Start(hWnd, 1280, 720);
     graphics.LoadSprite(L"skin.DDS", L"Skin");
     Scene scene{"Scene"};
-    scene.Start(graphics.GetDevice(), graphics.GetDeviceContext());
+
+    Entity* player{ scene.AddEntity("Player") };
+    player->AddComponent<Sprite>()->SetResource(L"Skin");
+    player->GetTransform().position.x = 400.f;
+    player->GetTransform().position.y = 300.f;
+    Entity* enemy{  scene.AddEntity("Enemy") };
+    enemy->AddComponent<Sprite>()->SetResource(L"Skin");
+    enemy->GetTransform().scale = { 0.3f, 0.3f, 0.3f };
+    enemy->GetTransform().position.x = 1000.f;
+    enemy->GetTransform().position.y = 500.f;
+
+    scene.Initialize();
     graphics.ChangeScene(&scene);
 
     DX::StepTimer timer{};
@@ -42,6 +54,9 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance,
         }
         else {
             timer.Tick([&]() {});
+            player->GetTransform().position.x += 0.005f;
+            player->GetTransform().rotation.z += 0.00001f;
+            enemy->GetTransform().position.x -= 0.005f;
             graphics.Render(timer);
         }
     }

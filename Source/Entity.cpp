@@ -26,16 +26,6 @@ std::string Entity::GetName() const noexcept {
 	return entityName;
 }
 #pragma endregion
-#pragma region Component functionality
-void Entity::Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext) {
-}
-void Entity::Update() {
-}
-void Entity::Render() {
-}
-void Entity::Reset() {
-}
-#pragma endregion
 #pragma region Component management
 template<typename T> T*							 Entity::AddComponent() {
 	if (CheckIfPresent<T>()) { throw("Component already exists! - Change to proper exception later"); }
@@ -49,8 +39,7 @@ template<typename T> void						 Entity::RemoveComponent() {
 }
 template<typename T> T*							 Entity::GetComponent() {
 	std::unique_ptr<Component>* component{ CheckIfPresent<T>() };
-	if (!component) { throw("Component doesn't exist! - Change to proper exception later"); }
-	return dynamic_cast<T*>(component->get());
+	return (component == nullptr) ? nullptr : dynamic_cast<T*>(component->get());
 }
 template<typename T> std::unique_ptr<Component>* Entity::CheckIfPresent() {
 	std::unique_ptr<Component>* componentPtr{ nullptr };
@@ -73,11 +62,13 @@ template Sprite*		 Entity::AddComponent<Sprite>();
 template BoxCollider*	 Entity::AddComponent<BoxCollider>();
 template SphereCollider* Entity::AddComponent<SphereCollider>();
 
+template void Entity::RemoveComponent<Drawable>();
 template void Entity::RemoveComponent<Sprite>();
 template void Entity::RemoveComponent<Collider>();
 template void Entity::RemoveComponent<BoxCollider>();
 template void Entity::RemoveComponent<SphereCollider>();
 
+template Drawable*		 Entity::GetComponent<Drawable>();
 template Sprite*		 Entity::GetComponent<Sprite>();
 template Collider*		 Entity::GetComponent<Collider>();
 template BoxCollider*	 Entity::GetComponent<BoxCollider>();

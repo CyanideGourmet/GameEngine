@@ -1,42 +1,39 @@
 #include "Components.h"
 #include "Entity.h"
 #include "Scene.h"
+#include <algorithm>
 
 Scene::Scene(const char* name)
 	: sceneName{ name } {}
-Scene::Scene(const Scene& source)
-	: sceneName{ source.sceneName }, entityList{ source.entityList } {}
-Entity* Scene::AddEntity(const char* name) noexcept {
-	entityList.emplace_back(name);
-	return &entityList.back();
+void Scene::Initialize() {
+	std::for_each(entityList.begin(), entityList.end(),
+		[&](const std::shared_ptr<Entity>& entity) {
+			if (entity->GetComponent<Drawable>()) {
+				drawableList.push_back(entity);
+			}
+		});
+	drawableList.remove_if(
+		[&](const std::shared_ptr<Entity>& entity) {
+			return !entity->GetComponent<Drawable>();
+		});
 }
-Entity* Scene::GetEntity(const char* name) {
-	auto entityIt{ std::find_if(entityList.begin(), entityList.end(), [&](const Entity& entity) { return entity.GetName() == name; }) };
-	if (entityIt == entityList.end()) { throw("No such entity!"); }
-	return &*entityIt;
+Entity* Scene::AddEntity(	const char* name) noexcept {
+	entityList.emplace_back(std::make_shared<Entity>(name));
+	return entityList.back().get();
 }
-void Scene::RemoveEntity(const char* name) {
-	auto entityIt{ std::find_if(entityList.begin(), entityList.end(), [&](const Entity& entity) { return entity.GetName() == name; }) };
-	if (entityIt == entityList.end()) { throw("No such entity!"); }
-	entityList.erase(entityIt);
+Entity* Scene::GetEntity(	const char* name) {
+	Entity* entity{ nullptr };
+	auto entityIt{ std::find_if(entityList.begin(), entityList.end(), [&](const std::shared_ptr<Entity>& entity) { return entity->GetName().c_str() == name; }) };
+	if (entityIt != entityList.end()) { entity = entityIt->get(); }
+	return entity;
 }
-void Scene::Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext) {
-	for (auto iter{ entityList.begin() }; iter != entityList.end(); iter++) {
-		iter->Start(device, deviceContext);
-	}
+void	Scene::RemoveEntity(const char* name) {
+	drawableList.remove_if([&](const std::shared_ptr<Entity>& entity) { return entity->GetName().c_str() == name; });
+	entityList.remove_if  ([&](const std::shared_ptr<Entity>& entity) { return entity->GetName().c_str() == name; });
 }
-void Scene::Update() {
-	for (auto iter{ entityList.begin() }; iter != entityList.end(); iter++) {
-		iter->Update();
-	}
+std::list<std::shared_ptr<Entity>>* Scene::GetDrawable() noexcept {
+	return &drawableList;
 }
-void Scene::Render() {
-	for (auto iter{ entityList.begin() }; iter != entityList.end(); iter++) {
-		iter->Render();
-	}
-}
-void Scene::Reset() {
-	for (auto iter{ entityList.begin() }; iter != entityList.end(); iter++) {
-		iter->Reset();
-	}
+std::list<std::shared_ptr<Entity>>* Scene::GetEntities() noexcept {
+	return &entityList;
 }

@@ -15,8 +15,4 @@ public:
 	template<typename T> void		RemoveComponent();
 	template<typename T> T*			GetComponent();
 	template<typename T> std::unique_ptr<Component>* CheckIfPresent();
-	void Start(ID3D11Device* device, ID3D11DeviceContext* deviceContext);
-	void Update();
-	void Render();
-	void Reset();
 };

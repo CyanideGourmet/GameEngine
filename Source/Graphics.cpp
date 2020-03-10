@@ -34,7 +34,15 @@ void Graphics::Render(DX::StepTimer const& timer) {
 		deviceResources->PIXBeginEvent(L"Render");
 
 		renderEvent.Invoke();
-		scenePtr->Render();
+		auto entities{ scenePtr->GetDrawable() };
+
+		spriteBatch->Begin();
+		for (auto entity{ entities->begin() }; entity != entities->end(); entity++) {
+			auto resourceName{ (*entity)->GetComponent<Drawable>()->GetResourceName()  };
+			auto transform{	   (*entity)->GetComponent<Drawable>()->GetWorldTransform()};
+			spriteBatch->Draw(resourceStorage.GetSprite(resourceName).resourceView.Get(), transform.position, nullptr, DirectX::Colors::White, transform.rotation.z, resourceStorage.GetSprite(resourceName).origin, transform.scale);
+		}
+		spriteBatch->End();
 
 		deviceResources->PIXEndEvent();
 		deviceResources->Present();
